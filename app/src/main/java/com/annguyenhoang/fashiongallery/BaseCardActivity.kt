@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_VERTICAL
 import com.annguyenhoang.fashiongallery.cards.Card
+import com.google.android.material.tabs.TabLayout
 import kotlin.math.abs
 
 /**

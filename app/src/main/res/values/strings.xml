@@ -23,4 +23,6 @@
     <string name="second_rv">Vertical RecyclerView</string>
     <string name="page_position">Page %1$d</string>
     <string name="item_position">Item %1$d</string>
+    <string name="img_book">img_book</string>
+    <string name="ic_eye">ic_eye</string>
 </resources>
