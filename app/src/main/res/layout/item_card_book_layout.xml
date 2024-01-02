@@ -4,17 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="book"
             type="com.annguyenhoang.fashiongallery.model.Book" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/book_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/bg_rounded"
-        android:padding="8dp"
-        android:layout_marginBottom="20dp">
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/img_book"

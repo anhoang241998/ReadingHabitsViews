@@ -13,15 +13,15 @@ class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
-                BookFragment(typeBook = position)
+                BookFragment.newInstance(position)
             }
 
             1 -> {
-                BookFragment(typeBook = position)
+                BookFragment.newInstance(position)
             }
 
             else -> {
-                BookFragment(typeBook = position)
+                BookFragment.newInstance(position)
             }
         }
     }
