@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="book"
+            type="com.annguyenhoang.fashiongallery.model.Book" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/book_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/img_book"
+            android:layout_width="80dp"
+            android:layout_height="128dp"
+            android:contentDescription="@string/img_book"
+            android:src="@drawable/img_book"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/typeBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/rounded_corner"
+            android:gravity="top"
+            android:lineSpacingExtra="4sp"
+            android:paddingHorizontal="4dp"
+            android:text="@{book.bookType.name()}"
+            android:textColor="@color/white"
+            android:textSize="10.24sp"
+            app:layout_constraintStart_toEndOf="@id/img_book"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/titleBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:lineSpacingExtra="5sp"
+            android:text="@{book.name}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/img_book"
+            app:layout_constraintTop_toBottomOf="@id/typeBook" />
+
+        <TextView
+            android:id="@+id/authorBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:lineSpacingExtra="1sp"
+            android:text="@{book.author}"
+            android:textColor="@color/neutral_500"
+            android:textSize="12.8sp"
+            app:layout_constraintStart_toEndOf="@id/img_book"
+            app:layout_constraintTop_toBottomOf="@id/titleBook" />
+
+        <ImageView
+            android:id="@+id/ic_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/ic_eye"
+            android:src="@drawable/ic_eye"
+            app:layout_constraintStart_toEndOf="@id/img_book"
+            app:layout_constraintTop_toBottomOf="@id/authorBook" />
+
+        <TextView
+            android:id="@+id/viewBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:lineSpacingExtra="4sp"
+            android:text="@{book.totalOfViews.toString()}"
+            android:textColor="@color/neutral_700"
+            android:textSize="10.24sp"
+            app:layout_constraintStart_toEndOf="@id/ic_eye"
+            app:layout_constraintTop_toBottomOf="@id/authorBook"
+            tools:ignore="SmallSp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:minHeight="0dp"
+            android:paddingHorizontal="12dp"
+            android:text="Đọc ngay"
+            android:textColor="@color/neutral_600"
+            android:textSize="12.8sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:strokeColor="@color/neutral_300"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

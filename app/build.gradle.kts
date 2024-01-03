@@ -36,6 +36,8 @@ android {
 
     buildFeatures {
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
     }
 }
 
@@ -50,4 +52,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("com.tbuonomo:dotsindicator:4.2")
+    implementation("org.greenrobot:eventbus:3.3.1")
 }

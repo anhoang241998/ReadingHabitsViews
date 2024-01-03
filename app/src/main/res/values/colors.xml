@@ -26,4 +26,14 @@
     <color name="teal_300">#4DB6AC</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="type_book_bgcolor">#009F9A</color>
+    <color name="neutral_100">#F3F4F6</color>
+    <color name="neutral_300">#D1D5DB</color>
+    <color name="neutral_400">#9CA3AF</color>
+    <color name="neutral_500">#6B7280</color>
+    <color name="neutral_600">#4B5563</color>
+    <color name="neutral_700">#374151</color>
+    <color name="neutral_900">#11161D</color>
+    <color name="transparent">#00FFFFFF</color>
+
 </resources>
