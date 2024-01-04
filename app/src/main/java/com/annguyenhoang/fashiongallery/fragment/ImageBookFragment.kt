@@ -1,53 +1,46 @@
 package com.annguyenhoang.fashiongallery.fragment
 
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.annguyenhoang.fashiongallery.ListBookViewModel
 import com.annguyenhoang.fashiongallery.R
 import com.annguyenhoang.fashiongallery.adapter.BookAdapter
 import com.annguyenhoang.fashiongallery.adapter.BookAdapterEvent
-import com.annguyenhoang.fashiongallery.adapter.OnItemClicked
-import com.annguyenhoang.fashiongallery.model.Book
+import com.annguyenhoang.fashiongallery.enums.FetchingStatus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class BookFragment : TabFragment(R.layout.all_book_layout) {
+class ImageBookFragment : TabFragment(R.layout.recycleview_book_layout) {
 
-    private var bookType: Int? = null
-
+    private val viewModel: ListBookViewModel by activityViewModels()
     private val bookAdapter by lazy {
         BookAdapter()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            bookType = it.getInt(BOOK_TYPE)
-        }
-    }
-
     override fun viewsControl() {
-        bookType?.let { typeBook ->
-            val lstBook = when (typeBook) {
-                1 -> Book.mock().filter { book -> (book.bookType?.id ?: 0) == typeBook }
-                2 -> Book.mock().filter { book -> (book.bookType?.id ?: 0) == typeBook }
-                else -> Book.mock()
-            }
+        viewModel.allBooks.observe(viewLifecycleOwner) { uiState ->
+            when (uiState.fetchingStatus) {
+                FetchingStatus.SUCCESS -> {
+                    uiState?.data?.let { dataBooks ->
+                        bookAdapter.setBooksToList(dataBooks)
+                    }
+                }
 
-            bookAdapter.setBooksToList(lstBook)
+                else -> {}
+            }
         }
+
+        viewModel.fetchAllBooks()
     }
 
     override fun initViews(view: View) {
         val recyclerView: RecyclerView = view.findViewById(R.id.recycleView)
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             adapter = bookAdapter
         }
     }
@@ -71,16 +64,4 @@ class BookFragment : TabFragment(R.layout.all_book_layout) {
             }
         }
     }
-
-    companion object {
-        const val BOOK_TYPE = "BOOK_TYPE"
-
-        @JvmStatic
-        fun newInstance(bookType: Int): BookFragment = BookFragment().apply {
-            arguments = Bundle().apply {
-                putInt(BOOK_TYPE, bookType)
-            }
-        }
-    }
-
 }

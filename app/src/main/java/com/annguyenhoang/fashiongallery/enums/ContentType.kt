@@ -1,6 +1,6 @@
 package com.annguyenhoang.fashiongallery.enums
 
-enum class LGContentType(val id: Int, val nameOfType: String) {
+enum class ContentType(val id: Int, val nameOfType: String) {
     ALL(1, "Tất cả"),
     WORD_BOOK(2, "Sách chữ"),
     PICTURE_BOOK(3, "Sách hình"),

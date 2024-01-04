@@ -39,7 +39,7 @@
             android:gravity="top"
             android:lineSpacingExtra="4sp"
             android:paddingHorizontal="4dp"
-            android:text="@{book.bookType.name()}"
+            android:text="@{book.bookType.typeName}"
             android:textColor="@color/white"
             android:textSize="10.24sp"
             app:layout_constraintStart_toEndOf="@id/img_book"

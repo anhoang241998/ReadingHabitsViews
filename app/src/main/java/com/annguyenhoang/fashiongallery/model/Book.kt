@@ -2,17 +2,17 @@ package com.annguyenhoang.fashiongallery.model
 
 import com.annguyenhoang.fashiongallery.R
 import com.annguyenhoang.fashiongallery.enums.BookStatus
-import com.annguyenhoang.fashiongallery.enums.LGBookType
-import com.annguyenhoang.fashiongallery.enums.LGContentType
+import com.annguyenhoang.fashiongallery.enums.BookType
+import com.annguyenhoang.fashiongallery.enums.ContentType
 
 class Book(
     val id: Int? = null, // having on model api "id"
-    val bookUuid: String, // having on model api "uuid"
-    val bookType: LGBookType? = null, // have on model api "book_type"
+    val bookUuid: String? = null, // having on model api "uuid"
+    val bookType: BookType? = null, // have on model api "book_type"
     val thumbnail: Int = R.drawable.img_book, // have on model api "thumbnail"
     val name: String? = null, // having on model api "name"
-    val category: List<LGCategory>? = null,
-    val contentType: LGContentType? = null,
+    val category: List<Category>? = null,
+    val contentType: ContentType? = null,
     val status: BookStatus? = null,
     val duration: Long? = null,
     val listeningTime: Long? = null,
@@ -35,10 +35,10 @@ class Book(
                 Book(
                     id = 1,
                     bookUuid = "4810dcde-fc06-456e-96fc-5859718d9d5d",
-                    bookType = LGBookType.WORD_BOOK,
+                    bookType = BookType.WORD_BOOK,
                     name = "K1Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(3),
-                    contentType = LGContentType.WORD_BOOK,
+                    category = Category.mock().take(3),
+                    contentType = ContentType.WORD_BOOK,
                     status = BookStatus.IN_PROGRESS,
                     duration = 523,
                     readingTime = 233,
@@ -54,10 +54,10 @@ class Book(
                 Book(
                     id = 2,
                     bookUuid = "4810dcde-fc06-456e-96fc-5859718d9d5d",
-                    bookType = LGBookType.WORD_BOOK,
+                    bookType = BookType.WORD_BOOK,
                     name = "Q2Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(6),
-                    contentType = LGContentType.WORD_BOOK,
+                    category = Category.mock().take(6),
+                    contentType = ContentType.WORD_BOOK,
                     status = BookStatus.IN_PROGRESS,
                     duration = 112,
                     readingTime = 34,
@@ -73,10 +73,10 @@ class Book(
                 Book(
                     id = 3,
                     bookUuid = "4810dcde-fc06-456e-96fc-5859718d9d5d",
-                    bookType = LGBookType.WORD_BOOK,
+                    bookType = BookType.WORD_BOOK,
                     name = "P3Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(8),
-                    contentType = LGContentType.WORD_BOOK,
+                    category = Category.mock().take(8),
+                    contentType = ContentType.WORD_BOOK,
                     status = BookStatus.UNREAD,
                     duration = 445,
                     readingTime = 231,
@@ -91,10 +91,10 @@ class Book(
                 Book(
                     id = 4,
                     bookUuid = "4810dcde-fc06-456e-96fc-5859718d9d5d",
-                    bookType = LGBookType.WORD_BOOK,
+                    bookType = BookType.WORD_BOOK,
                     name = "M4Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(2),
-                    contentType = LGContentType.WORD_BOOK,
+                    category = Category.mock().take(2),
+                    contentType = ContentType.WORD_BOOK,
                     status = BookStatus.UNREAD,
                     duration = 32,
                     totalOfViews = 456,
@@ -108,10 +108,10 @@ class Book(
                 Book(
                     id = 5,
                     bookUuid = "4810dcde-fc06-456e-96fc-5859718d9d5d",
-                    bookType = LGBookType.WORD_BOOK,
+                    bookType = BookType.WORD_BOOK,
                     name = "N5Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(9),
-                    contentType = LGContentType.WORD_BOOK,
+                    category = Category.mock().take(9),
+                    contentType = ContentType.WORD_BOOK,
                     status = BookStatus.FINISH,
                     duration = 322,
                     totalOfViews = 567,
@@ -125,10 +125,10 @@ class Book(
                 Book(
                     id = 6,
                     bookUuid = "d24838dd-889a-4710-91d9-c6c3a20c2b0e",
-                    bookType = LGBookType.AUDIO_BOOK,
+                    bookType = BookType.AUDIO_BOOK,
                     name = "W6Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(7),
-                    contentType = LGContentType.AUDIO_BOOK,
+                    category = Category.mock().take(7),
+                    contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.IN_PROGRESS,
                     duration = 3600,
                     listeningTime = 123,
@@ -143,10 +143,10 @@ class Book(
                 Book(
                     id = 7,
                     bookUuid = "d24838dd-889a-4710-91d9-c6c3a20c2b0e",
-                    bookType = LGBookType.AUDIO_BOOK,
+                    bookType = BookType.AUDIO_BOOK,
                     name = "Z7Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(5),
-                    contentType = LGContentType.AUDIO_BOOK,
+                    category = Category.mock().take(5),
+                    contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.IN_PROGRESS,
                     duration = 53423,
                     listeningTime = 3221,
@@ -162,10 +162,10 @@ class Book(
                 Book(
                     id = 8,
                     bookUuid = "d24838dd-889a-4710-91d9-c6c3a20c2b0e",
-                    bookType = LGBookType.AUDIO_BOOK,
+                    bookType = BookType.AUDIO_BOOK,
                     name = "H8Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(8),
-                    contentType = LGContentType.AUDIO_BOOK,
+                    category = Category.mock().take(8),
+                    contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.UNREAD,
                     duration = 42213,
                     totalOfViews = 890,
@@ -179,10 +179,10 @@ class Book(
                 Book(
                     id = 9,
                     bookUuid = "d24838dd-889a-4710-91d9-c6c3a20c2b0e",
-                    bookType = LGBookType.AUDIO_BOOK,
+                    bookType = BookType.AUDIO_BOOK,
                     name = "G9Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(5),
-                    contentType = LGContentType.AUDIO_BOOK,
+                    category = Category.mock().take(5),
+                    contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.UNREAD,
                     duration = 3321,
                     totalOfViews = 900,
@@ -196,10 +196,10 @@ class Book(
                 Book(
                     id = 10,
                     bookUuid = "d24838dd-889a-4710-91d9-c6c3a20c2b0e",
-                    bookType = LGBookType.AUDIO_BOOK,
+                    bookType = BookType.AUDIO_BOOK,
                     name = "F10Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(7),
-                    contentType = LGContentType.AUDIO_BOOK,
+                    category = Category.mock().take(7),
+                    contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.FINISH,
                     duration = 86399,
                     totalOfViews = 1234,
@@ -213,10 +213,10 @@ class Book(
                 Book(
                     id = 11,
                     bookUuid = "3d1c22b7-b56a-41a7-a385-a68889725ee7",
-                    bookType = LGBookType.PICTURE_BOOK,
+                    bookType = BookType.PICTURE_BOOK,
                     name = "E11Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(1),
-                    contentType = LGContentType.PICTURE_BOOK,
+                    category = Category.mock().take(1),
+                    contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.IN_PROGRESS,
                     duration = 86399,
                     readingTime = 12353,
@@ -232,10 +232,10 @@ class Book(
                 Book(
                     id = 12,
                     bookUuid = "3d1c22b7-b56a-41a7-a385-a68889725ee7",
-                    bookType = LGBookType.PICTURE_BOOK,
+                    bookType = BookType.PICTURE_BOOK,
                     name = "D12Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(5),
-                    contentType = LGContentType.PICTURE_BOOK,
+                    category = Category.mock().take(5),
+                    contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.IN_PROGRESS,
                     duration = 32221,
                     readingTime = 12353,
@@ -251,10 +251,10 @@ class Book(
                 Book(
                     id = 13,
                     bookUuid = "3d1c22b7-b56a-41a7-a385-a68889725ee7",
-                    bookType = LGBookType.PICTURE_BOOK,
+                    bookType = BookType.PICTURE_BOOK,
                     name = "C13Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(9),
-                    contentType = LGContentType.PICTURE_BOOK,
+                    category = Category.mock().take(9),
+                    contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.UNREAD,
                     totalOfViews = 4567,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -267,10 +267,10 @@ class Book(
                 Book(
                     id = 14,
                     bookUuid = "3d1c22b7-b56a-41a7-a385-a68889725ee7",
-                    bookType = LGBookType.PICTURE_BOOK,
+                    bookType = BookType.PICTURE_BOOK,
                     name = "B14Mô tả ngắn của sách, tối đa 2 dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(7),
-                    contentType = LGContentType.PICTURE_BOOK,
+                    category = Category.mock().take(7),
+                    contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.UNREAD,
                     totalOfViews = 5678,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -283,10 +283,10 @@ class Book(
                 Book(
                     id = 15,
                     bookUuid = "3d1c22b7-b56a-41a7-a385-a68889725ee7",
-                    bookType = LGBookType.PICTURE_BOOK,
+                    bookType = BookType.PICTURE_BOOK,
                     name = "/n/n         A15Mô tả ngắn của sách, tối đa 2/n dòng Mô tả ngắn của sách, tối đa 2 dòng",
-                    category = LGCategory.mock().take(3),
-                    contentType = LGContentType.PICTURE_BOOK,
+                    category = Category.mock().take(3),
+                    contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.FINISH,
                     totalOfViews = 6789,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người. Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
