@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -26,7 +27,7 @@ class AllBookFragment : TabFragment(R.layout.recycleview_book_layout) {
 
     private val viewModel: ListBookViewModel by activityViewModels()
     private var bookType: Int = 0
-    private val bookAdapter by lazy {
+    private val bookAdapter by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
         BookAdapter()
     }
     private lateinit var loadMoreBooks: ArrayList<Book?>
@@ -41,17 +42,14 @@ class AllBookFragment : TabFragment(R.layout.recycleview_book_layout) {
     }
 
     override fun viewsControl() {
+
         when (bookType) {
             1 -> {
                 viewModel.wordBooks.observe(viewLifecycleOwner) { uiState ->
-                    when (uiState.fetchingStatus) {
-                        FetchingStatus.SUCCESS -> {
-                            uiState?.data?.let { dataBooks ->
-                                bookAdapter.setDataBooks(dataBooks)
+                    uiState?.data?.let { dataBooks ->
 //                                bookAdapter.setBooksToList(dataBooks)
-                            }
-                        }
-                        else -> {}
+                        Log.d("TAG", "viewsControl: ${dataBooks.size}")
+                        bookAdapter.submitList(dataBooks.toList())
                     }
                 }
 
@@ -63,8 +61,7 @@ class AllBookFragment : TabFragment(R.layout.recycleview_book_layout) {
                     when (uiState.fetchingStatus) {
                         FetchingStatus.SUCCESS -> {
                             uiState?.data?.let { dataBooks ->
-                                bookAdapter.setDataBooks(dataBooks)
-//                                bookAdapter.setBooksToList(dataBooks)
+                                bookAdapter.setBooksToList(dataBooks)
                             }
                         }
                         else -> {}
@@ -79,8 +76,7 @@ class AllBookFragment : TabFragment(R.layout.recycleview_book_layout) {
                     when (uiState.fetchingStatus) {
                         FetchingStatus.SUCCESS -> {
                             uiState?.data?.let { dataBooks ->
-                                bookAdapter.setDataBooks(dataBooks)
-//                                bookAdapter.setBooksToList(dataBooks)
+                                bookAdapter.setBooksToList(dataBooks)
                             }
                         }
                         else -> {}
@@ -89,6 +85,11 @@ class AllBookFragment : TabFragment(R.layout.recycleview_book_layout) {
 
                 viewModel.fetchAllBooks()
             }
+        }
+
+        bookAdapter.setOnButtonItemClickListener { book ->
+            viewModel.updateProgressBar(book = book)
+            Log.d("TAG", "viewsControl: btn click")
         }
     }
 
@@ -103,7 +104,8 @@ class AllBookFragment : TabFragment(R.layout.recycleview_book_layout) {
                 DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
             )
 
-            setHasFixedSize(true)
+//            setHasFixedSize(true)
+//            setItemViewCacheSize(10)
 
             scrollListener = RecyclerViewLoadMoreScroll(LinearLayoutManager(requireContext()))
             scrollListener.setOnLoadMoreListener(object : OnLoadMoreListener {

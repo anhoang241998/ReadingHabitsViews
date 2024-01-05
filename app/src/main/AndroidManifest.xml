@@ -24,6 +24,8 @@
         <activity
             android:name=".BaseCardActivity">
         </activity>
+        <activity android:name=".LearningActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

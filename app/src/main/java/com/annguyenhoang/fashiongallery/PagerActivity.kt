@@ -7,8 +7,12 @@ import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
 import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
@@ -17,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.annguyenhoang.fashiongallery.adapter.PagerAdapter
 import com.annguyenhoang.fashiongallery.enums.FetchingStatus
 import com.annguyenhoang.fashiongallery.model.Book
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -70,46 +75,50 @@ class PagerActivity : FragmentActivity() {
             val dialog = BottomSheetDialog(this)
             val view = layoutInflater.inflate(R.layout.bottom_sheet, null)
             val btnClose = view.findViewById<Button>(R.id.btnClose)
+            val rdoPopular = view.findViewById<RadioButton>(R.id.rdoPopular)
+            val rdoNewest = view.findViewById<RadioButton>(R.id.rdoNewest)
+            val rdoOldest = view.findViewById<RadioButton>(R.id.rdoOldest)
+
             btnClose.setOnClickListener {
                 dialog.dismiss()
             }
+
             dialog.setCancelable(false)
             dialog.setContentView(view)
             dialog.show()
+
+            when (btnSort.text) {
+                "Phổ biến" -> rdoPopular.isChecked = true
+                "Mới nhất" -> rdoNewest.isChecked = true
+                "Cũ nhất" -> rdoOldest.isChecked = true
+            }
+
+            onRadioButtonClicked(view = view)
         }
+    }
 
-        fun onRadioButtonClicked(view: View) {
-            if (view is RadioButton) {
-                val checked = view.isChecked
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            val checked = view.isChecked
 
-                when (view.getId()) {
-                    R.id.rdoPopular ->
-                        if (checked) {
+            when (view.getId()) {
+                R.id.rdoPopular ->
+                    if (checked) {
+                        viewModel.sortPopular()
+                        btnSort.text = "Phổ biến"
+                    }
 
-//                            viewModel.wordBooks.observe(this) { uiState ->
-//                                when (uiState.fetchingStatus) {
-//                                    FetchingStatus.SUCCESS -> {
-////                                        uiState?.data?.let { dataBooks ->
-////                                bookAdapter.setBooksToList(dataBooks)
-//                                        }
-//                                    }
-//                                    else -> {}
-//                                }
-//                            }
-//
-//                            viewModel.fetchWordBooks()
-                        }
+                R.id.rdoNewest ->
+                    if (checked) {
+                        viewModel.sortNewest()
+                        btnSort.text = "Mới nhất"
+                    }
 
-                    R.id.rdoNewest ->
-                        if (checked) {
-                            Log.d("TAG", "onRadioButtonClicked: ")
-                            viewModel.fetchAllBooksNew()
-                        }
-
-                    R.id.rdoOldest ->
-                        if (checked) {
-                        }
-                }
+                R.id.rdoOldest ->
+                    if (checked) {
+                        viewModel.sortOldest()
+                        btnSort.text = "Cũ nhất"
+                    }
             }
         }
     }

@@ -1,9 +1,11 @@
 package com.annguyenhoang.fashiongallery.model
 
+import androidx.recyclerview.widget.DiffUtil
 import com.annguyenhoang.fashiongallery.R
 import com.annguyenhoang.fashiongallery.enums.BookStatus
 import com.annguyenhoang.fashiongallery.enums.BookType
 import com.annguyenhoang.fashiongallery.enums.ContentType
+import com.annguyenhoang.fashiongallery.enums.ItemRecyclerView
 
 class Book(
     val id: Int? = null, // having on model api "id"
@@ -14,7 +16,7 @@ class Book(
     val category: List<Category>? = null,
     val contentType: ContentType? = null,
     val status: BookStatus? = null,
-    val duration: Long? = null,
+    var duration: Int? = null,
     val listeningTime: Long? = null,
     val readingTime: Long? = null,
     val totalOfViews: Int? = null, // having on model api "total_reads"
@@ -40,7 +42,7 @@ class Book(
                     category = Category.mock().take(3),
                     contentType = ContentType.WORD_BOOK,
                     status = BookStatus.IN_PROGRESS,
-                    duration = 523,
+                    duration = 0,
                     readingTime = 233,
                     totalOfViews = 123,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -59,7 +61,7 @@ class Book(
                     category = Category.mock().take(6),
                     contentType = ContentType.WORD_BOOK,
                     status = BookStatus.IN_PROGRESS,
-                    duration = 112,
+                    duration = 0,
                     readingTime = 34,
                     totalOfViews = 0,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -78,7 +80,7 @@ class Book(
                     category = Category.mock().take(8),
                     contentType = ContentType.WORD_BOOK,
                     status = BookStatus.UNREAD,
-                    duration = 445,
+                    duration = 0,
                     readingTime = 231,
                     totalOfViews = 345,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -96,7 +98,7 @@ class Book(
                     category = Category.mock().take(2),
                     contentType = ContentType.WORD_BOOK,
                     status = BookStatus.UNREAD,
-                    duration = 32,
+                    duration = 0,
                     totalOfViews = 456,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
                     avgRating = 3.8f,
@@ -113,7 +115,7 @@ class Book(
                     category = Category.mock().take(9),
                     contentType = ContentType.WORD_BOOK,
                     status = BookStatus.FINISH,
-                    duration = 322,
+                    duration = 0,
                     totalOfViews = 567,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
                     avgRating = 3.7f,
@@ -130,7 +132,7 @@ class Book(
                     category = Category.mock().take(7),
                     contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.IN_PROGRESS,
-                    duration = 3600,
+                    duration = 0,
                     listeningTime = 123,
                     totalOfViews = 678,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -148,7 +150,7 @@ class Book(
                     category = Category.mock().take(5),
                     contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.IN_PROGRESS,
-                    duration = 53423,
+                    duration = 0,
                     listeningTime = 3221,
                     totalOfViews = 789,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -167,7 +169,7 @@ class Book(
                     category = Category.mock().take(8),
                     contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.UNREAD,
-                    duration = 42213,
+                    duration = 0,
                     totalOfViews = 890,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
                     avgRating = 4.2f,
@@ -184,7 +186,7 @@ class Book(
                     category = Category.mock().take(5),
                     contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.UNREAD,
-                    duration = 3321,
+                    duration = 0,
                     totalOfViews = 900,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
                     avgRating = 4.8f,
@@ -201,7 +203,7 @@ class Book(
                     category = Category.mock().take(7),
                     contentType = ContentType.AUDIO_BOOK,
                     status = BookStatus.FINISH,
-                    duration = 86399,
+                    duration = 0,
                     totalOfViews = 1234,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
                     avgRating = 4.7f,
@@ -218,7 +220,7 @@ class Book(
                     category = Category.mock().take(1),
                     contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.IN_PROGRESS,
-                    duration = 86399,
+                    duration = 0,
                     readingTime = 12353,
                     totalOfViews = 2345,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",
@@ -237,7 +239,7 @@ class Book(
                     category = Category.mock().take(5),
                     contentType = ContentType.PICTURE_BOOK,
                     status = BookStatus.IN_PROGRESS,
-                    duration = 32221,
+                    duration = 0,
                     readingTime = 12353,
                     totalOfViews = 3456,
                     bestSentence = "Có một thứ không bao giờ tuân theo nguyên tắc số đông, đó chính là lương tâm con người.",

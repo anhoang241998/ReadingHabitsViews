@@ -97,13 +97,32 @@
             app:layout_constraintTop_toBottomOf="@id/authorBook"
             tools:ignore="SmallSp" />
 
+        <ProgressBar
+            android:id="@+id/progressBarHorizontal"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:minHeight="32dp"
+            android:progress="0"
+            android:progressBackgroundTint="@android:color/darker_gray"
+            android:progressTint="@color/green_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRead"
+            app:layout_constraintStart_toEndOf="@id/img_book" />
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/transparent"
             android:minHeight="0dp"
             android:paddingHorizontal="12dp"
             android:text="Đọc ngay"
+            android:clickable="true"
+            android:focusable="true"
             android:textColor="@color/neutral_600"
             android:textSize="12.8sp"
             app:layout_constraintBottom_toBottomOf="parent"
